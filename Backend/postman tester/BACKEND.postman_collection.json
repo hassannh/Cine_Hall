@@ -1,0 +1,334 @@
+{
+	"info": {
+		"_postman_id": "bcf9b139-edfd-4a62-8487-f68832cd4650",
+		"name": "BACKEND",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25127983"
+	},
+	"item": [
+		{
+			"name": "movies",
+			"item": [
+				{
+					"name": "get movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/CineHall/Backend/app/controllers/movies/movies.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"CineHall",
+								"Backend",
+								"app",
+								"controllers",
+								"movies",
+								"movies.php"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"marouane\",\r\n    \"email\" : \"email@email.email\",\r\n    \"password\" : \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/CineHall/Backend/app/controllers/user/register.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"CineHall",
+								"Backend",
+								"app",
+								"controllers",
+								"user",
+								"register.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\" : \"195ee7c6da229858d92113acace66c3b\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/CineHall/Backend/app/controllers/user/login.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"CineHall",
+								"Backend",
+								"app",
+								"controllers",
+								"user",
+								"login.php"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "halls",
+			"item": [
+				{
+					"name": "hall_1",
+					"item": [
+						{
+							"name": "get_places_hall_1",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/CineHall/Backend/app/controllers/hall_1/get_all_places.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"CineHall",
+										"Backend",
+										"app",
+										"controllers",
+										"hall_1",
+										"get_all_places.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_full_places_hall_1",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/CineHall/Backend/app/controllers/hall_1/get_full_places.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"CineHall",
+										"Backend",
+										"app",
+										"controllers",
+										"hall_1",
+										"get_full_places.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_empty_places_hall_1",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/CineHall/Backend/app/controllers/hall_1/get_empty_places.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"CineHall",
+										"Backend",
+										"app",
+										"controllers",
+										"hall_1",
+										"get_empty_places.php"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "hall_2",
+					"item": [
+						{
+							"name": "get_places_hall_2",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/CineHall/Backend/app/controllers/hall_2/get_all_places.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"CineHall",
+										"Backend",
+										"app",
+										"controllers",
+										"hall_2",
+										"get_all_places.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_full_places_hall_2",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/CineHall/Backend/app/controllers/hall_2/get_full_places.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"CineHall",
+										"Backend",
+										"app",
+										"controllers",
+										"hall_2",
+										"get_full_places.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_empty_places_hall_2",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/CineHall/Backend/app/controllers/hall_2/get_empty_places.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"CineHall",
+										"Backend",
+										"app",
+										"controllers",
+										"hall_2",
+										"get_empty_places.php"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "hall_3",
+					"item": [
+						{
+							"name": "get_places_hall_3",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/CineHall/Backend/app/controllers/hall_3/get_all_places.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"CineHall",
+										"Backend",
+										"app",
+										"controllers",
+										"hall_3",
+										"get_all_places.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_empty_places_hall_3",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/CineHall/Backend/app/controllers/hall_3/get_empty_places.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"CineHall",
+										"Backend",
+										"app",
+										"controllers",
+										"hall_3",
+										"get_empty_places.php"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_full_places_hall_3",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost/CineHall/Backend/app/controllers/hall_3/get_full_places.php",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"CineHall",
+										"Backend",
+										"app",
+										"controllers",
+										"hall_3",
+										"get_full_places.php"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

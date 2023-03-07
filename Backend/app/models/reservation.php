@@ -20,6 +20,7 @@ class reservation
 
     public function add_reservation()
     {
+
         $query = 'INSERT INTO booking ( id_user, hall_name,place_number,booking_date,price)VALUES (:id_user, :hall_name,:place_number,:booking_date,:price)';
         // Prepare statement
         $stmt = $this->conn->prepare($query);
@@ -34,6 +35,10 @@ class reservation
 
         // Execute query
         if ($stmt->execute()) {
+            echo '<pre>';
+            var_dump($stmt);
+            echo '</pre>';
+            exit;
             return true;
         }
 
@@ -51,16 +56,16 @@ class reservation
     {
         $query = 'SELECT * FROM hall_' . $this->hall_name . ' WHERE place_number = :place_number ';
         // Prepare statement 
-       
+
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':place_number', $this->place_number);
         $stmt->execute();
         $place_info = $stmt->fetch();
 
-        
-        $place_id = (int)$place_info ['id_place'];
-        
-      
+
+        $place_id = (int)$place_info['id_place'];
+
+
 
         $query2 = 'UPDATE hall_' .  $this->hall_name . ' SET book = 1 WHERE id_place = :id_place';
 
@@ -68,7 +73,7 @@ class reservation
         $stmt2 = $this->conn->prepare($query2);
         $stmt2->bindParam(':id_place', $place_id);
         echo '<pre>';
-      
+
         if ($stmt2->execute()) {
             return true;
         }
@@ -79,6 +84,15 @@ class reservation
         return false;
     }
 
+
+    public function get_reservationByUserID($id)
+    {
+        $query = "SELECT * FROM booking b, movies m WHERE b.price = m.place_price and b.hall_name = m.hall_number  and id_user = " . $id;
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt;
+    }
 
     public function delete_reservation()
     {

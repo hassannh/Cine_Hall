@@ -1,78 +1,76 @@
 <template>
-<link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-<div class="body">
-    <div class="ticket">
-        <div class="left">
-            <div class="image">
-                <p class="admit-one">
-                    <span>ADMIT ONE</span>
-                    <span>ADMIT ONE</span>
-                    <span>ADMIT ONE</span>
-                </p>
-                <div class="ticket-number">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+	<div class="body" v-for="movie in movies" :key="movie.id">
+		<div class="ticket">
+			<div class="left">
+				<div class="image">
+					<img :src="'../../public/pictures/' + movie.picture" style="height: 250px;width: 250px;position: absolute;z-index: 0;">
+					<p class="admit-one">
+						<span>ADMIT ONE</span>
+						<span>ADMIT ONE</span>
+						<span>ADMIT ONE</span>
+					</p>
+					<div class="ticket-number">
                     <p>
-                        #20030220
+                        #{{ movie.place_number }}
                     </p>
                 </div>
-            </div>
-            <div class="ticket-info">
-                <p class="date">
-                    <span>TUESDAY</span>
-                    <span class="june-29">JUNE 29TH</span>
-                    <span>2021</span>
-                </p>
-                <div class="show-name">
-                    <h1>SOUR Prom</h1>
-                    <h2>Olivia Rodrigo</h2>
-                </div>
-                <div class="time">
-                    <p>8:00 PM <span>TO</span> 11:00 PM</p>
-                    <p>DOORS <span>@</span> 7:00 PM</p>
-                </div>
-                <p class="location"><span>East High School</span>
-                    <span class="separator"><i class="far fa-smile"></i></span><span>Salt Lake City, Utah</span>
-                </p>
-            </div>
-        </div>
-        <div class="right">
-            <p class="admit-one">
-                <span>ADMIT ONE</span>
-                <span>ADMIT ONE</span>
-                <span>ADMIT ONE</span>
-            </p>
-            <div class="right-info-container">
-                <div class="show-name">
-                    <h1>SOUR Prom</h1>
-                </div>
-                <div class="time">
-                    <p>8:00 PM <span>TO</span> 11:00 PM</p>
-                    <p>DOORS <span>@</span> 7:00 PM</p>
-                </div>
-                <div class="barcode">
-                    <img src="https://external-preview.redd.it/cg8k976AV52mDvDb5jDVJABPrSZ3tpi1aXhPjgcDTbw.png?auto=webp&s=1c205ba303c1fa0370b813ea83b9e1bddb7215eb" alt="QR code">
-                </div>
-                <p class="ticket-number">
-                    #20030220
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-
+				</div>
+				<div class="ticket-info">
+					<p class="date">
+						<span>Date</span>
+						<span class="june-29">{{ movie.booking_date }}</span>
+						<span>2023</span>
+					</p>
+					<div class="show-name">
+						<h1>{{ movie.name }}</h1>
+						<h2>Hall {{ movie.hall_name }} </h2>
+					</div>
+					<div class="time">
+						<p>8:00 PM <span>TO</span> 11:00 PM</p>
+						<p>DOORS <span>@</span> 7:00 PM</p>
+					</div>
+					<p class="location"><span>East YouCode School</span>
+						<span class="separator"><i class="far fa-smile"></i></span><span>Safi City, Cinema</span>
+					</p>
+				</div>
+			</div>
+			<div class="right">
+				<p class="admit-one">
+					<span>ADMIT ONE</span>
+					<span>ADMIT ONE</span>
+					<span>ADMIT ONE</span>
+				</p>
+				<div class="right-info-container">
+					<div class="show-name">
+						<h1>Cine Hall</h1>
+					</div>
+					<div class="time">
+						<p>8:00 PM <span>TO</span> 11:00 PM</p>
+						<p>DOORS <span>@</span> 7:00 PM</p>
+					</div>
+					<div class="barcode">
+						<button class="btn btn-primary bg-blue">Remove</button>
+					</div>
+					<p class="ticket-number">
+						Place N: {{ movie.place_number }}
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 
 <style>
-    @import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap");
 
 
-.body
-{
-     padding: 0;
-     box-sizing: border-box;
-     margin: 0;
+.body {
+	padding: 0;
+	box-sizing: border-box;
+	margin: 0;
 	height: 100vh;
 	display: grid;
 	font-family: "Staatliches", cursive;
@@ -96,7 +94,6 @@
 .image {
 	height: 250px;
 	width: 250px;
-	background-image: url("https://media.pitchfork.com/photos/60db53e71dfc7ddc9f5086f9/1:1/w_1656,h_1656,c_limit/Olivia-Rodrigo-Sour-Prom.jpg");
 	background-size: contain;
 	opacity: 0.85;
 }
@@ -247,11 +244,32 @@
 .right .ticket-number {
 	color: gray;
 }
-
 </style>
 
 
 <script>
 
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
 
+export default {
+	
+   setup() {
+      const movies = ref([])
+	
+		const id_user = JSON.parse(localStorage.getItem("id_user"));
+      const fetchData = async () => {
+         const response = await axios.get(`http://localhost/CineHall/Backend/app/controllers/reservation/get_reservation.php?id=${id_user}`);
+         movies.value = response.data;
+      };
+
+
+      onMounted(() => {
+         fetchData();
+      });
+
+      return { movies};
+
+   },
+};
 </script>

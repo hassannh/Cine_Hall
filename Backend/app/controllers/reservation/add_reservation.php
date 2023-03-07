@@ -19,6 +19,7 @@ $reservation = new reservation($db);
 
   if($_SERVER['REQUEST_METHOD'] = 'POST'){
 
+
   $reservation->id_user = $data->id_user;
   $reservation->hall_name = $data->hall_name;
   $reservation->place_number = $data->place_number;

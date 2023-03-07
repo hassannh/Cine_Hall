@@ -5,24 +5,24 @@
     <div>
 
         <form class="flex justify-center flex-col shadow-lg p-12 mt-12" @submit.prevent="Submit">
-            <input class="flex items-center h-12 w-64" name="id_user" v-model="id_user" type="hidden">
+            <input class="flex items-center h-12 w-64" name="id_user" type="hidden">
 
             <label class="font-semibold text-xs mt-3">date</label>
-            <input class="flex items-center h-12 w-64 text-black" @change="changeDate" type="date" placeholder="date">
+            <input class="flex items-center h-12 w-64 text-black"  @change="changeDate" type="date" placeholder="date">
 
             <label class="font-semibold text-xs mt-3">hall_name</label>
-            <input class="flex items-center h-12 w-64 text-black"  :value="movie.hall_number" readonly
+            <input class="flex items-center h-12 w-64 text-black" :value="movie.hall_number" readonly
                 type="text">
 
             <label class="font-semibold text-xs mt-3">price</label>
-            <input v-model="movie.place_price" class="flex items-center h-12 w-64 text-black" :v-model="form.price" readonly
+            <input name="price" class="flex items-center h-12 w-64 text-black" :value="movie.place_price" readonly
                 type="text">
 
 
 
             <div class="grid grid-cols-12 gap-5 mt-5">
                 <label class="flex flex-row gap-1" v-for="(place, i) in empty_places" :key="i" @click="setSeat(place.place_number)">
-                    <input type="radio" :id="'chair' + i" :value="place.hall_number">
+                    <input type="radio" name="place_number" :id="'chair' + i" :value="place.hall_number">
                     <img style="width:2rem" :src="'../public/pictures/chair.png'" alt="">
                     <span>{{ place.place_number }}</span>
                 </label>
@@ -68,7 +68,7 @@ export default {
     data() {
         return {
             places :[],
-            id_user:'4',
+            id_user:[],
             movie: {},
             full_places: [],
             empty_places: [],
@@ -133,9 +133,13 @@ export default {
         async Submit() {
 
             try {
-                this.form.hall_name = this.movie.hall_number
-                // this.form.id_user = 7
+                const id_user = JSON.parse(localStorage.getItem("id_user"));
+                this.form.hall_name = this.movie.hall_number,
                 this.form.price = this.movie.place_price,
+                this.form.id_user = id_user,
+
+                console.log(this.form);
+                stop
 
                 axios.post('http://localhost/CineHall/Backend/app/controllers/reservation/add_reservation.php', JSON.stringify(this.form))
                     .then(res => res.data.message)

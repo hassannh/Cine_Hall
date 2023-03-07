@@ -17,7 +17,7 @@ $user = new user($db);
 // Get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
-$user->token = $data->token;
+$user->token = $data;
 // get user by token
 $result = $user->getUserByToken();
 
@@ -43,17 +43,20 @@ if ($num > 0) {
         $_SESSION['email'] = $user_item['email'];
         $_SESSION['token'] = $user_item['token'];
         if ($_SESSION['id']&&$_SESSION['name']&&$_SESSION['email']&&$_SESSION['token']) {
-            echo json_encode(["message" =>"Valide token"]);
+            echo json_encode(["message" =>"Valide token",
+            "user"=>$user_item
+            ]
+        );
         }else{
             echo json_encode(["message" =>"no Valide token"]);
         }
 
         // Push to "data"
-        array_push($users_arr, $user_item);
+        // array_push($users_arr, $user_item);
     }
 
     // Turn to JSON & output
-    echo json_encode($users_arr);
+    // echo json_encode($users_arr);
 } else {
     // No users
     echo json_encode(

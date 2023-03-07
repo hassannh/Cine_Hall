@@ -8,7 +8,7 @@
     <div class="bg-white rounded-md bg-gray-800 shadow-lg" style="width:69%" v-for="item in items" :key="item.id">
       <div class="md:flex px-4 leading-none max-w-4xl">
         <div class="flex-none ">
-          <img :src="'../public/pictures/' + item.picture" alt="pic"
+          <img :src="'/pictures/' + item.picture" alt="pic"
             class="h-72 w-56 rounded-md shadow-2xl transform -translate-y-4 border-4 border-gray-300 shadow-lg" />
 
 
@@ -75,6 +75,7 @@ export default {
     onMounted(() => {
 
       fetchData();
+      
     });
 
     return { items };

@@ -9,7 +9,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <div>
           <img class="w-16" src="../../public/pictures/cinemaLogo.png" alt="">
       </div>
-      <div class="md:static absolute md:min-h-fit min-h-[30vh] left-0 top-[200%] md:w-auto w-full flex-items-center px-5">
+      <div class="md:static absolute md:min-h-fit min-h-[30vh] left-0 top-[-500%] md:w-auto w-full flex-items-center px-5">
           <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vh] gap-8">
             <li>
               <RouterLink to="/"> <a  class="hover:text-gray-500">Home</a></RouterLink>
@@ -26,7 +26,7 @@ import { RouterLink, RouterView } from 'vue-router'
           </ul>
       </div>
       <div>
-        <button class="text-white px-5 py-2">Login</button>
+        <RouterLink to="/login"> <button class="text-white px-5 py-2">Login</button> </RouterLink>
         <!-- <ion-icon name="menu"></ion-icon> -->
       </div>
     </nav>

@@ -36,7 +36,7 @@
           axios.post('http://localhost/CineHall/Backend/app/controllers/user/login.php', JSON.stringify(this.form))
           .then(res => console.log(res.data))
           
-        // this.$router.push({ path: "/" });
+        this.$router.push({ path: "/" });
         } catch (error) {
           console.error(error)
         }

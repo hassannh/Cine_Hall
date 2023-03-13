@@ -17,7 +17,7 @@ import { RouterLink, RouterView } from 'vue-router'
 							</path>
 						</svg>
 					</div>
-					<span class="self-center text-2xl font-semibold">Brand name</span>
+					<span class="self-center text-2xl font-semibold">Cine Hall</span>
 				</a>
 			</div>
 			<div class="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">

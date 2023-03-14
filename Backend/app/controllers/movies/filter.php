@@ -1,6 +1,5 @@
+
 <?php
-
-
 
 session_start();
 header('Access-Control-Allow-Origin: *');
@@ -15,9 +14,11 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,
         $database = new Database;
         $connect = $database->connect();
 
+        $data = json_decode(file_get_contents("php://input"));
+
         $movies = new Movie($connect);
 
-        $result = $movies->getmovies();
+        $result = $movies->getmoviesByDate($data->date);
 
         $num = $result->rowCount();
 

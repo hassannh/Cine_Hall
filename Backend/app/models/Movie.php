@@ -27,6 +27,16 @@ class Movie
         return $stmt;
 
     }
+    public function getmoviesByDate($date){
+        $query = "SELECT * FROM movies WHERE date Like '$date'";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt;
+
+    }
+
+
 
     public function get_movie()
     {

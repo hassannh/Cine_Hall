@@ -8,7 +8,7 @@
             <input class="flex items-center h-12" name="id_user" type="hidden">
 
             <label class="font-semibold text-xs mt-3 max-w-xs w-full sm:w-full md:w-full ">date</label>
-            <input class="flex items-center h-12 text-black max-w-xs w-full sm:w-full md:w-full"  @change="changeDate" type="date" placeholder="date">
+            <input class="flex items-center h-12 text-black max-w-xs w-full sm:w-full md:w-full"  @change="changeDate" type="date" placeholder="date" disabled>
 
             <label class="font-semibold text-xs mt-3 max-w-xs w-full sm:w-full md:w-full ">hall_name</label>
             <input class="flex items-center h-12 text-black max-w-xs w-full sm:w-full md:w-full " :value="movie.hall_number" readonly

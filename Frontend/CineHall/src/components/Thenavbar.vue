@@ -1,5 +1,13 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import { useAuthStore } from '../stores/Auth';
+import {initModals} from 'flowbite'
+import { onMounted } from 'vue';
+
+const authStore = useAuthStore()
+onMounted(()=>{
+  initModals()
+})
 </script>
 
 <template>
@@ -24,9 +32,12 @@ import { RouterLink, RouterView } from 'vue-router'
           <RouterLink to="/Booking">
           <li><a class="hover:text-gray-200">Booking</a></li>
           </RouterLink>
-          <RouterLink to="/Tickets">
+        
+          <RouterLink to="/Tickets" v-if="authStore.user">
           <li><a class="hover:text-gray-200">Tickets</a></li>
           </RouterLink>
+      
+          
         </ul>
         <!-- Header Icons -->
         <div class="hidden xl:flex items-center space-x-5 items-center">

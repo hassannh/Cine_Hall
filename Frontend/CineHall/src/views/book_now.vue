@@ -2,26 +2,26 @@
 
 
 <template>
-    <div>
+    <div class="mx-auto my-0 mx-1/4">
 
-        <form class="flex justify-center flex-col shadow-lg p-12 mt-12" @submit.prevent="Submit">
-            <input class="flex items-center h-12 w-64" name="id_user" type="hidden">
+        <form class=" flex-col shadow-lg p-12 mt-12 " @submit.prevent="Submit">
+            <input class="flex items-center h-12" name="id_user" type="hidden">
 
-            <label class="font-semibold text-xs mt-3">date</label>
-            <input class="flex items-center h-12 w-64 text-black"  @change="changeDate" type="date" placeholder="date">
+            <label class="font-semibold text-xs mt-3 max-w-xs w-full sm:w-full md:w-full ">date</label>
+            <input class="flex items-center h-12 text-black max-w-xs w-full sm:w-full md:w-full"  @change="changeDate" type="date" placeholder="date">
 
-            <label class="font-semibold text-xs mt-3">hall_name</label>
-            <input class="flex items-center h-12 w-64 text-black" :value="movie.hall_number" readonly
+            <label class="font-semibold text-xs mt-3 max-w-xs w-full sm:w-full md:w-full ">hall_name</label>
+            <input class="flex items-center h-12 text-black max-w-xs w-full sm:w-full md:w-full " :value="movie.hall_number" readonly
                 type="text">
 
-            <label class="font-semibold text-xs mt-3">price</label>
-            <input name="price" class="flex items-center h-12 w-64 text-black" :value="movie.place_price" readonly
+            <label class="font-semibold text-xs mt-3 max-w-xs w-full sm:w-full md:w-full ">price</label>
+            <input name="price" class="flex items-center h-12 text-black max-w-xs w-full sm:w-full md:w-full " :value="movie.place_price" readonly
                 type="text">
 
 
 
-            <div class="grid grid-cols-12 gap-5 mt-5">
-                <label class="flex flex-row gap-1" v-for="(place, i) in empty_places" :key="i" @click="setSeat(place.place_number)">
+            <div class="flex flex-wrap gap-5 mt-5 max-w-xs w-full sm:w-full md:w-full ">
+                <label class="flex flex-row gap-1 w-10" v-for="(place, i) in empty_places" :key="i" @click="setSeat(place.place_number)">
                     <input type="radio" name="place_number" :id="'chair' + i" :value="place.hall_number">
                     <img style="width:2rem" :src="'../public/pictures/chair.png'" alt="">
                     <span>{{ place.place_number }}</span>
@@ -29,8 +29,8 @@
 
             </div>
 
-            <div class="grid grid-cols-12 gap-5 mt-5 ">
-                <label class="flex flex-row gap-1" v-for="(place, i) in full_places" :key="i" >
+            <div class="flex flex-wrap gap-5 mt-5 max-w-xs w-full sm:w-full md:w-full ">
+                <label class="flex flex-row gap-1 w-10" v-for="(place, i) in full_places" :key="i" >
                     <input disabled type="radio" :id="'chair' + i" :value="place.hall_number" >
                     <img style="width:2rem" :src="'../public/pictures/chair_Full.png'" alt="">
                     <span>{{ place.place_number }}</span>
@@ -38,7 +38,7 @@
 
             </div>
 
-            <button type="submit" class="border border-blue-500 text-blue-500 font-bold py-2 px-4 w-21 mt-3">BOOK
+            <button type="submit" class="border border-blue-500 text-blue-500 font-bold py-2 px-4 w-15 mt-3">BOOK
                 NOW</button>
 
         </form>

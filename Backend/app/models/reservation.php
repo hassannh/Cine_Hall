@@ -49,6 +49,14 @@ class reservation
     }
 
 
+    public function getOne($id)
+    {
+        $query = 'SELECT * FROM booking Where id=' .$id;
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return  $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
 
 
 
@@ -87,12 +95,28 @@ class reservation
 
     public function get_reservationByUserID($id)
     {
-        $query = "SELECT * FROM booking b, movies m WHERE b.price = m.place_price and b.hall_name = m.hall_number  and id_user = " . $id;
-        
+        $query = "SELECT m.*,b.id as res_id ,b.* FROM booking b, movies m WHERE  b.hall_name = m.hall_number  and id_user = " . $id;
+
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;
     }
+
+
+    public function deleteRes($id, $num_hall, $num_place)
+    {
+        $query = 'UPDATE hall_' . $num_hall . '
+        SET  book = 0
+        WHERE id_place = ' . $num_place;
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        $query = 'DELETE  FROM booking WHERE id = ' . $id;
+        $stmt = $this->conn->prepare($query);
+        return $stmt->execute();
+    }
+
 
     public function delete_reservation()
     {
